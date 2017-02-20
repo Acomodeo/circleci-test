@@ -3,22 +3,21 @@ version: 2
 executorType: docker
 
 containerInfo:
-          - image: maven
-              - image: mongo
+  - image: maven
+  - image: mongo
 
-                stages:
-                          build:
-                                      workDir: ~/gds
-                                          steps:
-                                                        - type: checkout
-                                                                - type: cache-restore
-                                                                          key: maven
-                                                                                - type: shell
-                                                                                          command: mvn -s settings.xml -U clean integration-test
-                                                                                                - type: cache-save
-                                                                                                          key: maven
-                                                                                                                  paths:
-                                                                                                                                    - ~/.m2
-                                                                                                                                            - type: test-results-store
-                                                                                                                                                      path: ~/gds/target/surefire-reports
-
+stages:
+  build:
+    workDir: ~/gds
+      steps:
+        - type: checkout
+        - type: cache-restore
+          key: maven
+        - type: shell
+          command: mvn -s settings.xml -U clean integration-test
+        - type: cache-save
+          key: maven
+          paths:
+            - ~/.m2
+        - type: test-results-store
+          path: ~/gds/target/surefire-reports
