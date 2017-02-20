@@ -8,7 +8,7 @@ containerInfo:
 
 stages:
   build:
-    workDir: ~/gds
+    workDir: ~/circleci-test
       steps:
         - type: checkout
         - type: cache-restore
@@ -20,4 +20,4 @@ stages:
           paths:
             - ~/.m2
         - type: test-results-store
-          path: ~/gds/target/surefire-reports
+          path: ~/circleci-test/target/surefire-reports
