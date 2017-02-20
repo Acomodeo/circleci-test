@@ -9,15 +9,15 @@ containerInfo:
 stages:
   build:
     workDir: ~/circleci-test
-      steps:
-        - type: checkout
-        - type: cache-restore
-          key: maven
-        - type: shell
-          command: mvn -s settings.xml -U clean integration-test
-        - type: cache-save
-          key: maven
-          paths:
-            - ~/.m2
-        - type: test-results-store
-          path: ~/circleci-test/target/surefire-reports
+    steps:
+      - type: checkout
+      - type: cache-restore
+        key: maven
+      - type: shell
+        command: mvn -s settings.xml -U clean integration-test
+      - type: cache-save
+        key: maven
+        paths:
+          - ~/.m2
+      - type: test-results-store
+        path: ~/circleci-test/target/surefire-reports
