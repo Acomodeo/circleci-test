@@ -4,7 +4,6 @@ executorType: docker
 
 containerInfo:
   - image: maven
-  - image: mongo
 
 stages:
   build:
